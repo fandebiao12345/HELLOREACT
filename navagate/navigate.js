@@ -6,12 +6,21 @@ import HomeScreen from '../page/HomeScreen'
 import DetailsScreen from '../page/DetailsScreen'
 
 const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
+  Home: HomeScreen,
+  Details: DetailsScreen,
+},
+{
+  initialRouteName: 'Home',
+  /* The header config from HomeScreen is now here */
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   },
-  Details: DetailsScreen
-}, {
-    initialRouteName: "Home"
-  });
+});
 
 export default AppNavigator
