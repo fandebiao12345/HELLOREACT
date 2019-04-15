@@ -4,21 +4,32 @@ import { View, Text, Button } from "react-native";
 
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home'
-  }
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen</Text>
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: '测试',
+      headerRight: (
         <Button
-          title="Go to Detaidadsals"
-          onPress={() => this.props.navigation.navigate('Details', {
-            itemId: 86,
-            otherParam: 'anything you want here',
-          })}
+          onPress={navigation.getParam('increaseCount')}
+          title="+1"
+          color="green"
         />
-      </View>
-    );
+      ),
+    };
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ increaseCount: this._increaseCount });
   }
+
+  state = {
+    count: 0,
+  };
+  render() {
+    return <Text>{this.state.count}</Text>
+  }
+  _increaseCount = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  /* later in the render function we display the count */
 }

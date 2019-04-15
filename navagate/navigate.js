@@ -1,26 +1,30 @@
-// In App.js in a new project
+import React from 'react';
+import { Text, View } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
+class HomeScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Home!</Text>
+      </View>
+    );
+  }
+}
 
-import { createStackNavigator } from "react-navigation";
-import HomeScreen from '../page/HomeScreen'
-import DetailsScreen from '../page/DetailsScreen'
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
 
-const AppNavigator = createStackNavigator({
+const TabNavigator = createBottomTabNavigator({
   Home: HomeScreen,
-  Details: DetailsScreen,
-},
-{
-  initialRouteName: 'Home',
-  /* The header config from HomeScreen is now here */
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  },
+  Settings: SettingsScreen,
 });
 
-export default AppNavigator
+export default createAppContainer(TabNavigator);
